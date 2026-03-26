@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're invited to try SiteScale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:    #0d0d14;
+      --bg2:   #11111a;
+      --surf:  #1a1a28;
+      --surf2: #1e1e2e;
+      --bdr:   rgba(255,255,255,.06);
+      --bdr2:  rgba(176,110,243,.22);
+      --acc:   #b06ef3;
+      --cta:   #c026d3;
+      --green: #4ade80;
+      --txt:   #e2e2f0;
+      --muted: #8888aa;
+      --dim:   #55556a;
+      --mono:  'IBM Plex Mono', monospace;
+      --sans:  'IBM Plex Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: var(--sans);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(176,110,243,.04) 47px, rgba(176,110,243,.04) 48px),
+        repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(176,110,243,.04) 47px, rgba(176,110,243,.04) 48px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .brand-name {
+      font: 700 20px var(--mono);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--txt);
+    }
+
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--acc);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--acc);
+    }
+
+    .eyebrow {
+      font: 500 10px var(--mono);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--acc);
+      margin-bottom: 16px;
+    }
+
+    .headline {
+      font: 300 38px/1.15 var(--sans);
+      color: var(--txt);
+      margin-bottom: 16px;
+      letter-spacing: -.5px;
+    }
+
+    .headline strong {
+      color: var(--acc);
+      font-weight: 600;
+    }
+
+    .subline {
+      font: 400 16px var(--sans);
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--bdr);
+      margin: 36px 0;
+    }
+
+    /* ── Intro text ── */
+    .intro {
+      font: 400 16px/1.7 var(--sans);
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    .intro strong {
+      color: var(--txt);
+      font-weight: 500;
+    }
+
+    /* ── Features ── */
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 40px;
+    }
+
+    .feature {
+      background: var(--surf);
+      border: 1px solid var(--bdr);
+      padding: 20px 22px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: border-color .2s, background .2s;
+    }
+
+    .feature:hover {
+      border-color: var(--bdr2);
+      background: var(--surf2);
+    }
+
+    .feature-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .feature-body {}
+
+    .feature-title {
+      font: 600 12px var(--mono);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--txt);
+      margin-bottom: 4px;
+    }
+
+    .feature-desc {
+      font: 400 14px var(--sans);
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── CTA block ── */
+    .cta-block {
+      background: var(--surf2);
+      border: 1px solid var(--bdr2);
+      padding: 36px 32px;
+      text-align: center;
+    }
+
+    .cta-label {
+      font: 500 10px var(--mono);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 12px;
+    }
+
+    .cta-url {
+      font: 600 22px var(--mono);
+      color: var(--acc);
+      margin-bottom: 24px;
+      word-break: break-all;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: var(--cta);
+      color: #fff;
+      font: 700 12px var(--mono);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border: 2px solid #e879f9;
+      text-decoration: none;
+      box-shadow: 0 0 28px rgba(192,38,211,.45);
+      transition: all .15s;
+    }
+
+    .btn-cta:hover {
+      background: #a21caf;
+      border-color: #f0abfc;
+      transform: translateY(-1px);
+      box-shadow: 0 0 40px rgba(192,38,211,.65);
+    }
+
+    .cta-note {
+      font: 400 11px var(--mono);
+      color: var(--dim);
+      margin-top: 16px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .footer p {
+      font: 400 12px var(--mono);
+      color: var(--dim);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .headline { font-size: 28px; }
+      .cta-url { font-size: 16px; }
+      .cta-block { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <span class="brand-name">SiteScale</span>
+      <div class="brand-dot"></div>
+    </div>
+    <div class="eyebrow">Job Site Planning Tool</div>
+    <h1 class="headline">Your job site,<br><strong>to scale.</strong></h1>
+    <p class="subline">Plan any job site, measure accurately, and send a professional quote — right from your browser.</p>
+  </div>
+
+  <hr class="divider">
+
+  <p class="intro">
+    I wanted to share a tool I think you'll find genuinely useful. <strong>SiteScale</strong> lets you load a satellite map of any address, draw your site plan over it, take real measurements, and generate a professional quote PDF — all without installing anything. It runs entirely in your browser and works on your phone.
+    <br><br>
+    What sets it apart: you're not locked into any particular map. If you have a <strong>drone photo, county parcel map, or downloaded aerial</strong>, upload it directly and calibrate to scale from any known measurement on the image. It works with whatever you're already pulling on a job.
+  </p>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🛰️</div>
+      <div class="feature-body">
+        <div class="feature-title">Satellite Maps</div>
+        <div class="feature-desc">Search any address and load a satellite image instantly. Scale calibrates automatically.</div>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📸</div>
+      <div class="feature-body">
+        <div class="feature-title">Works With Any Image</div>
+        <div class="feature-desc">Upload a drone photo, county parcel map, or any aerial image. Set scale from one known measurement and start planning.</div>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🖊️</div>
+      <div class="feature-body">
+        <div class="feature-title">Draw Site Zones</div>
+        <div class="feature-desc">Draw rectangles, circles, or freehand polygons over your map. Label and color-code every zone.</div>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📐</div>
+      <div class="feature-body">
+        <div class="feature-title">Real Measurements</div>
+        <div class="feature-desc">Measure distances and calculate areas in actual real-world units — feet, inches, or square footage.</div>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📋</div>
+      <div class="feature-body">
+        <div class="feature-title">Quote Generator</div>
+        <div class="feature-desc">Generate a professional quote PDF with your site plan, material quantities, and pricing — ready to send to clients.</div>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">☁️</div>
+      <div class="feature-body">
+        <div class="feature-title">Cloud Save</div>
+        <div class="feature-desc">Projects save to the cloud. Pick up from any device — desktop, tablet, or phone.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-label">Free to start · No credit card required</div>
+    <div class="cta-url">app.sitescale.net</div>
+    <a href="https://app.sitescale.net" class="btn-cta">Open SiteScale →</a>
+    <p class="cta-note">Free plan available &nbsp;·&nbsp; Pro from $29 / month</p>
+  </div>
+
+  <div class="footer">
+    <p>© 2026 SiteScale Solutions LLC &nbsp;·&nbsp; sitescale.net</p>
+  </div>
+
+</div>
+</body>
+</html>
